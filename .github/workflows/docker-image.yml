@@ -15,13 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-    -
-      uses: ./
-      with:
-        username: ${{ SECRETS.JFROGUSER }}
-        password: ${{ SECRETS.APIKEY }}
-    -
-      run: |
-        docker login firstfinancial.jfrog.io 
+    - run: |
+        echo "${{ SECRETS.JFROGUSER }}" | docker login firstfinancial.jfrog.io -u "${{ SECRETS.APIKEY }}" --password-stdin
         docker build --tag firstfinancial.jfrog.io/docker/my-docker-image:latest
         docker push firstfinancial.jfrog.io/docker/my-docker-image:latest
