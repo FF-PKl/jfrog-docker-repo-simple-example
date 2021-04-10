@@ -17,7 +17,7 @@ jobs:
     - name: Build the Docker image
       env:
         USER = ${{ SECRETS.JFROGUSER }}
-        PW = ${{ APIKEY }}
+        PW = ${{ SECRETS.APIKEY }}
       run: |
         docker login firstfinancial.jfrog.io --user $USER --password $pw
         docker build --tag firstfinancial.jfrog.io/docker/my-docker-image:latest
